@@ -1,0 +1,190 @@
+{{ if eq .chezmoi.os "linux" }}
+# Source Prezto
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# Init zplug
+if [[ ! -d ~/.zplug ]];then
+    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+fi
+source ~/.zplug/init.zsh
+
+# Select zplug plugins
+zplug "clvv/fasd"
+zplug "junegunn/fzf"
+zplug "yuhonas/zsh-aliases-lsd"
+
+# Make sure that plugins are installed
+if ! zplug check --verbose; then
+    printf "Installing missing zplug plugins...\n"
+    zplug install
+fi
+
+# Load Zplug plugins
+zplug load
+
+{{else if eq .chezmoi.os "darwin" -}}
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Source Prezto
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# Init zplug
+if [[ ! -d ~/.zplug ]];then
+    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+fi
+source ~/.zplug/init.zsh
+
+# Select zplug plugins
+zplug "clvv/fasd"
+zplug "junegunn/fzf"
+zplug "yuhonas/zsh-aliases-lsd"
+zplug "romkatv/powerlevel10k", as:theme, depth:1
+
+# Make sure that plugins are installed
+if ! zplug check --verbose; then
+    printf "Installing missing zplug plugins...\n"
+    zplug install
+fi
+
+# Load Zplug plugins
+zplug load
+
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+declare -a NODE_GLOBALS=(`find ~/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
+
+NODE_GLOBALS+=("node")
+NODE_GLOBALS+=("nvm")
+
+load_nvm () {
+    export NVM_DIR=~/.nvm
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+}
+
+for cmd in "${NODE_GLOBALS[@]}"; do
+    eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@ }"
+done
+
+# set editor
+export EDITOR=/opt/homebrew/bin/nvim
+export VISUAL=/opt/homebrew/bin/nvim
+
+# tmux aliases
+alias t="tmux"
+alias ta="t a -t"
+alias tls="t ls"
+alias tn="t new -t"
+alias tid='tmux display-message -p "#S"'
+function tk () {
+  tmux kill-session -t $(tmux display-message -p '#S')
+  docker kill $(docker ps -q) > /dev/null 2>&1
+}
+
+alias muxstart='tmuxinator start'
+
+alias zc="cd /Users/nathanbraun/code/github.com/nathanbraun"
+
+export APY_ANKI_PATH=/Users/nathanbraun/anki/anki-2.1.40
+export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:/Applications/Racket v8.5/bin"
+
+fpath=($HOME/.local/zsh-functions $fpath)
+
+export PATH="/opt/homebrew/bin:$PATH"
+# function tn() (
+#     if [ -n "$1" ]
+#       then
+#          tmux switch -t $1
+#       else
+#          echo "no session name"
+#      fi
+#   )
+export PATH="/opt/homebrew/sbin:$PATH"
+export PATH="/usr/local/texlive/2021/bin/universal-darwin:$PATH"
+export PATH=/usr/local/smlnj/bin:"$PATH"
+
+tmux_jump() {
+    # starting in ~/code...
+    BASE="$HOME/code/github.com"
+    # ... look for directories exactly two levels deep (`~/code/owner/project`)
+    # and match them with fzf. In this case we break ties by favoring matches
+    # on the project name instead of the owner name (implementaion means
+    # favoring matches closer to the end of the string.) This is simplified a
+    # little bit with the `--select-1 --query="$1"` line: if there's only one
+    # match for the argument passed in as the first argument to this function,
+    # we select immediately instead of asking for an interactive selection.
+    SELECTED=$(find "$BASE" -mindepth 2 -maxdepth 2 -type d | sed "s|$BASE/||g" | fzf --tiebreak=end --select-1 --query="$1")
+
+    # fzf will exit with a non-zero code if you ctrl-c or ctrl-g out of
+    # it. We use this as a signal that we don't want to jump after all.
+    if [[ "$?" != 0 ]]; then echo "cancelling!"; return 1; fi
+
+    # call tmux-session on the *full* path to the matched project!
+    tmux-session "$BASE/$SELECTED"
+}
+
+# and alias this so I can just do `t bytes.zone` instead of having to type
+# tmux_jump every time.
+alias tj=tmux_jump
+alias ts=tmux-session
+
+{{end -}}
+
+export PYTHONBREAKPOINT="IPython.embed"
+
+################################################################################
+# put in vi mode:
+################################################################################
+bindkey -v
+
+# add kj and jk to insert mode
+bindkey -M viins 'kj' vi-cmd-mode
+bindkey -M viins 'jk' vi-cmd-mode
+
+bindkey '^p' history-beginning-search-backward
+bindkey '^n' history-beginning-search-forward
+
+# Change cursor shape for different vi modes.
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+
+if [ -f ~/.zshrc_local ]; then
+    source ~/.zshrc_local
+fi
+
+alias ipython="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+eval "$(fasd --init auto)"
+
+# aliases
+# alias pomo='noti pomodoro --simple'
+# alias dash='noti pomodoro --simple 5'
+
+alias gg="lazygit"
+alias ch="chezmoi cd"
+alias cha="chezmoi apply"
+
+
+alias ssh='TERM=xterm-256color \ssh'
