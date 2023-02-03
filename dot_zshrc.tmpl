@@ -181,6 +181,10 @@ if [ -f ~/.zshrc_local ]; then
     source ~/.zshrc_local
 fi
 
+if [ -f ~/.profile ]; then
+    source ~/.profile
+fi
+
 alias ipython="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
