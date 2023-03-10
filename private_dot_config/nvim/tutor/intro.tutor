@@ -34,8 +34,8 @@ no harm in pressing it if you're unsure.
 To complete this lesson:
 
 1. Make sure you're in Normal mode.
-2. Press the `j`{normal} key to move the cursor down until you can see
-   everything in Lesson 2.1.
+2. Press the `j`{normal} key to move the cursor down until you can see Lesson
+   2.1.
 
 ## Lesson 2: NORMAL MODE - MOVING THE CURSOR
 
@@ -164,13 +164,13 @@ The ccow jumpedd ovverr thhe mooon.
 
 ### Lesson 3.2: REPLACE ONE CHARACTER IN NORMAL MODE
 
-In Normal mode, pressing `r`{normal} then a single key, will replace the cursor
-with that key. For example, press `rx`{normal} to replace the character at the
-cursor with x.
+In Normal mode, pressing `r`{normal}, then a single key, will replace the
+cursor with that key. For example, press `rx`{normal} to replace the character
+at the cursor with x.
 
 Note: later we'll learn other ways to replace text. Replacing a single
 character with `r`{normal} doesn't come up *that* often, but it's good to know
-+ good navigation practice.
++ also good navigation practice.
 
  1. Move the cursor to the first line below marked ✗.
 
@@ -384,7 +384,8 @@ what makes Vim so powerful.
 ## Lesson 5: INSERT MODE
 
 So far we've been using Vim in Normal mode. In Normal mode, when you press
-`w`{normal}, the cursor jumps forward a word, pressing `b`{normal} back etc.
+`w`{normal}, the cursor jumps forward a word, pressing `b`{normal} moves it
+back, etc.
 
 In Insert mode, when you type `w` or `b`, a `w` or `b` appears on the screen.
 Insert mode is like Microsoft Word or Google Docs.
@@ -405,14 +406,13 @@ In Insert mode, pressing `jk`{normal} together will put you back in Normal mode.
 
 1. Move the cursor to the first line below marked ✗.
 
-2. To make the first line the same as the second, move the cursor on top of the
-   first character AFTER where the text is to be inserted.
+2. Make the first line the same as the second by moving the cursor, entering
+   insert mode, and making the fix. Note how `i`{normal} puts you in insert
+   mode right *before* the cursor.
 
-3. Press `i`{normal} and type in the necessary additions.
+3. As each error is fixed press `jk` to return to Normal mode.
 
-4. As each error is fixed press `jk` to return to Normal mode.
-
-5. Repeat steps 2 through 4 to correct the sentence.
+4. Repeat steps 2 and 3 to correct the sentence.
 
 There is text misng this .
 There is some text missing from this line.
@@ -438,11 +438,11 @@ right of the current line.
 2. Use `A` and `I` to fix the lines below so that they all say the same thing.
    Make sure you go back to Normal mode after each fix.
 
-Good, no text missing!
+Vim is a free and open-source, screen-based text editor program.
 
-text missing!
-Good, no
-no text
+free and open-source, screen-based text editor program.
+Vim is a free and open-source, screen-based 
+free and open-source, screen-based 
 
 ## Lesson 5.3: MORE WAYS TO GET INTO INSERT MODE - o
 
@@ -452,9 +452,9 @@ So far we've learned `i`{normal}, `a`{normal}, along with their start
 The `o`{normal} key will make a new line on the line *below* your cursor, and
 put you in insert mode in it.
 
-1. Delete Do nothing with `dd`{normal}.
-2. Then move the cursor to Eat Breakfast and type `o`{normal} to add Learn Vim
-   to the todo list below:
+1. Move the cursor to Eat Breakfast and type `o`{normal} to add Learn Vim
+   (include a hyphen) to the todo list below:
+2. Delete Do nothing with `dd`{normal}.
 
 LIST FOR TODAY
 - Wake Up
@@ -464,7 +464,7 @@ LIST FOR TODAY
 ## Lesson 5.4: MORE WAYS TO GET INTO INSERT MODE - c
 
 The `c`{normal} key (for change) works the same way as the `d`{normal} (delete)
-key, except after deleting the text it'll put you in Insert mode after.
+key, except it'll put you in Insert mode after deleting the text.
 
 1. Use `c$`{normal} to change the sentence below to say Learning Vim is fun!
 
@@ -496,12 +496,13 @@ puts you into Insert mode after.
 In Normal mode, pressing `.`{normal} (a period, or dot) will repeat whatever
 command you just did.
 
-1. Use the `I`{normal} to fix the second line below:
+1. Use the `I`{normal} to fix the second line below. (Remember the `I`{normal}
+   inserts at the beginning of the line no matter where the cursor is.)
 
 There is some text missing from this line.
 some text missing from this line.
 
-2. Now use the `.` command to fix each of the following lines:
+2. Now use the `.` command to fix each of the following lines. 
 
 also some text missing here.
 text missing here too.
