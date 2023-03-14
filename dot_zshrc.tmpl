@@ -123,6 +123,8 @@ export PATH="/opt/homebrew/sbin:$PATH"
 export PATH="/usr/local/texlive/2021/bin/universal-darwin:$PATH"
 export PATH=/usr/local/smlnj/bin:"$PATH"
 
+{{end -}}
+
 tmux_jump() {
     # starting in ~/code...
     BASE="$HOME/code/github.com"
@@ -147,9 +149,6 @@ tmux_jump() {
 # tmux_jump every time.
 alias tj=tmux_jump
 alias ts=tmux-session
-
-{{end -}}
-
 export PYTHONBREAKPOINT="IPython.embed"
 
 ################################################################################

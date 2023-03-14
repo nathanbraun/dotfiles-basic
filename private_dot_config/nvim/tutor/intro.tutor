@@ -1,15 +1,15 @@
 # Welcome to the Vim Tutorial
 
-Vim is a text editor, a program used to read, write and edit text.
+Vim is a text editor -- a program used to read, write and edit text.
 
-Vim is fast and powerful. But it's different from other text editors, and so
-takes some getting uses to. Hence this tutorial. But don't worry, learning Vim
-is (1) fun, and (2) doesn't take that long. This guide takes about 30 minutes.
+Vim is fast and powerful. But it's different from other editors, and so takes
+some getting used to. Hence this tutorial. But don't worry, learning Vim is (1)
+fun, and (2) doesn't take that long. This guide takes about 30 minutes.
 
 This tutorial takes place *in* Vim. Text editors are for working with text. In
-this case the text you're working with is a Vim tutorial. It's interactive, and
-you'll be editing the text. Don't worry about messing anything up, changes
-won't be saved.
+this case the text you're working with is a tutorial about Vim. It's
+interactive, and you'll be editing it. Don't worry about messing anything up,
+changes won't be saved.
 
 For now, press the `j`{normal} key to move the cursor down until you can see
 Lesson 1.
@@ -226,7 +226,7 @@ We're learning Vim because it's *fast*, not because we want to spend a bunch of
 time counting things.
 
 Counts are powerful feature of Vim and it's worth knowing about them, but there
-are usually faster ways to do things.
+are often faster ways to do what we want.
 
 ## Lesson 3.5 UNDOING AND REDOING
 
@@ -236,6 +236,7 @@ press `<C-r>`{normal}.
 1. Fix the following sentence:
 
 Learnning Vim iss ffun!!
+Learning Vim is fun!
 
 2. Undo your fixes with `u`{normal}.
 3. Redo them with `<C-r>`{normal}.
@@ -446,8 +447,8 @@ right of the current line.
 Vim is a free and open-source, screen-based text editor program.
 
 free and open-source, screen-based text editor program.
-Vim is a free and open-source, screen-based 
-free and open-source, screen-based 
+Vim is a free and open-source, screen-based
+free and open-source, screen-based
 
 ## Lesson 5.3: MORE WAYS TO GET INTO INSERT MODE - o
 
@@ -457,8 +458,8 @@ So far we've learned `i`{normal}, `a`{normal}, along with their start
 The `o`{normal} key will make a new line on the line *below* your cursor, and
 put you in insert mode in it.
 
-1. Move the cursor to Eat Breakfast and type `o`{normal} to add Learn Vim
-   (include a hyphen) to the todo list below:
+1. Move the cursor to Eat Breakfast and type `o`{normal} to add "- Learn Vim"
+   (include the hyphen) to the todo list below:
 2. Delete Do nothing with `dd`{normal}.
 
 LIST FOR TODAY
@@ -507,8 +508,8 @@ command you just did.
 There is some text missing from this line.
 some text missing from this line.
 
-2. Now use the `.` command to fix each of the following lines (note, make sure
-   the cursor is on the line you're fixing).
+2. Now use the `.` command to fix each of the following lines (note, move the
+   cursor to the line you want to fix and press `.`{normal}).
 
 also some text missing here.
 text missing here too.
@@ -521,9 +522,8 @@ How much would could a would chuck chuck if a would chuck could chuck would.
 
 ## Lesson 6.2: LEADER KEY
 
-Sometimes we might want to do one-off actions. This could be functionality
-built in to Vim that we just want to make quicker or something from a
-third-party plugin.
+Sometimes we want to do one-off actions in Vim. This could be built-in Vim
+functionality that we do often or something from a third-party plugin.
 
 In Vim, these are often done via a shortcut of the form:
 
