@@ -1,15 +1,15 @@
 # Welcome to the Vim Tutorial
 
-Vim is a text editor, a program used to read, write and edit text. Vim is
-fast and powerful. But it's different from other text editors, and so takes
-some getting uses to.
+Vim is a text editor, a program used to read, write and edit text.
 
-Hence this tutorial. But don't worry, learning Vim is (1) fun, and (2) doesn't
-take that long. This tutorial takes about 30 minutes.
+Vim is fast and powerful. But it's different from other text editors, and so
+takes some getting uses to. Hence this tutorial. But don't worry, learning Vim
+is (1) fun, and (2) doesn't take that long. This guide takes about 30 minutes.
 
-Note you're reading this in Vim right now. This tutorial was written in it.
-You'll be editing text with Vim as we work through this guide. Don't worry
-about messing anything up, changes won't be saved.
+This tutorial takes place *in* Vim. Text editors are for working with text. In
+this case the text you're working with is a Vim tutorial. It's interactive, and
+you'll be editing the text. Don't worry about messing anything up, changes
+won't be saved.
 
 For now, press the `j`{normal} key to move the cursor down until you can see
 Lesson 1.
@@ -48,7 +48,8 @@ reading, revising or (in case of code) running text than it is to be writing it
 for the very first time.
 
 A big part of being in Normal mode is moving cursor around the screen - that's
-this lesson.
+this lesson. When you're ready to get started, press `j`{normal} until you can
+see Lesson 2.1.
 
 ### Lesson 2.1: h, j, k, l AS ARROW KEYS
 
