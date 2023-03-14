@@ -1,14 +1,18 @@
 # Welcome to the Vim Tutorial
 
-Vim is a editor that has many commands, too many to explain in a tutorial such
-as this. This tutorial is designed to describe enough of the commands that you
-will be able to easily use Vim as an all-purpose editor.
+Vim is a text editor, a program used to read, write and edit text. Vim is
+fast and powerful. But it's different from other text editors, and so takes
+some getting uses to.
 
-NOTE: The commands in the lessons will modify the text, but those changes
-won't be saved, so don't worry about messing things up.
+Hence this tutorial. But don't worry, learning Vim is (1) fun, and (2) doesn't
+take that long. This tutorial takes about 30 minutes.
+
+Note you're reading this in Vim right now. This tutorial was written in it.
+You'll be editing text with Vim as we work through this guide. Don't worry
+about messing anything up, changes won't be saved.
 
 For now, press the `j`{normal} key to move the cursor down until you can see
-everything in Lesson 1.
+Lesson 1.
 
 ## Lesson 1: MODES
 
@@ -34,8 +38,8 @@ no harm in pressing it if you're unsure.
 To complete this lesson:
 
 1. Make sure you're in Normal mode.
-2. Press the `j`{normal} key to move the cursor down until you can see Lesson
-   2.1.
+2. Press the `j`{normal} key to move the cursor down until you can see the
+   start of Lesson 2.
 
 ## Lesson 2: NORMAL MODE - MOVING THE CURSOR
 
@@ -502,7 +506,8 @@ command you just did.
 There is some text missing from this line.
 some text missing from this line.
 
-2. Now use the `.` command to fix each of the following lines. 
+2. Now use the `.` command to fix each of the following lines (note, make sure
+   the cursor is on the line you're fixing).
 
 also some text missing here.
 text missing here too.
@@ -515,14 +520,16 @@ How much would could a would chuck chuck if a would chuck could chuck would.
 
 ## Lesson 6.2: LEADER KEY
 
-Sometimes there are one-off type actions or shortcuts we (or third party
-plugins) want to do.
+Sometimes we might want to do one-off actions. This could be functionality
+built in to Vim that we just want to make quicker or something from a
+third-party plugin.
 
 In Vim, these are often done via a shortcut of the form:
 
 `<leader><key>`{normal} in Normal mode.
 
-People use different leader keys. We're using `<space>`.
+Where `<leader>`{normal} is some key (e.g. comma, backslash, space bar). People
+use different keys. *Our leader key is the space bar, `<space>`.*
 
 One example mapping we have set up is making `<leader>d`{normal} enter the
 current date in YYYY-MM-DD form.
@@ -564,8 +571,8 @@ Now let's save your file.
  1. Save the file by typing `:`{normal}. This opens *command* mode.
  2. In command mode, type `w` (for *write*), then `<Enter>`.
 
-Your file is now saved on your computer. But it's still open; we just saved it,
-we didn't save and quit.
+Your file is now saved on your computer. Note it's still open. We just saved
+it, we didn't save and quit.
 
 Stay in the file for now. We'll learn how to exit Vim next lesson
 
@@ -574,7 +581,7 @@ Stay in the file for now. We'll learn how to exit Vim next lesson
 To exit Vim:
 
 1. Making sure your cursor is still in the file we opened earlier this lesson
-   (type <C-l> and <C-h> to go back and forth), type `:`{normal} to open
+   (type `<C-l>` and `<C-h>` to go back and forth), type `:`{normal} to open
    command mode.
 
 2. Then type `q!`{normal}. The `q` is for quit, and the `!` means to discard
@@ -599,7 +606,7 @@ file.
 
 2. Type some text.
 
-3. Save the file by typing `:w`{normal} myfile2.txt.
+3. Save the file by typing `:w`{normal} my_file2.txt.
 
 4. Now let's open up our first file with `:e`{normal} my_file.txt. The `e` is
    for *edit*.
@@ -624,7 +631,9 @@ finder"), a plugin that lets you type in what you're looking for.
 
 This presents you with a list of the current directory's *files*. In it, you
 can type *part* of what you're looking for (e.g. "2.txt") and it'll match. You
-can also move up and down with `<C-n>`{normal} and `<C-p>`{normal}.
+can also move up and down with `<C-n>`{normal} and `<C-p>`{normal}. If you
+change your mind and want to close it without matching anything press
+`<Esc>`{normal}.
 
 3. Select `my_file2.txt` and open it.
 
@@ -693,9 +702,9 @@ The start vs the end of this sentence.
 
 4. Press `$`{normal} to move to the end of the line.
 
-5. Copy what the text you have selected.
+5. Press `y`{normal} to copy the text you have selected.
 
-6. Put it on the end of the line below
+6. Paste it on the end of the line below
 
 The start of that sentence 
 
@@ -710,7 +719,7 @@ You can also enter *linewise* visual mode by pressing `V`{normal} (uppercase
 V).
 
 In linewise Visual mode, you select enter lines, which is sometimes handy.
-Let's see an example.
+Let's look at an example that will make the differences clear:
 
 #### REGULAR VISUAL MODE
 
@@ -767,8 +776,8 @@ sentence.
 
 ## Lesson 9: A FEW MORE MOTIONS
 
-One benefit to Visual mode is it let's us see how certain motions work: if
-we're in Visual mode and type a motion it'll highlight the text.
+One benefit to Visual mode is it let's us see how certain motions work: in
+Visual mode we can type a motion it'll highlight the text.
 
 Let's use that feature now to learn a few other very useful motions.
 
@@ -787,7 +796,7 @@ footnote in the line below.
 3. Now type `a]`. This tells Vim to select "around brackets",
    everything inside the brackets + the brackets themselves.
 
-4. Type `<Esc>` or `<C-c>` to clear the selection.
+4. Type `<Esc>` to clear the selection.
 
 5. Now try it with `vi]`{normal}. This tells Vim to select "inside brackets",
    everything inside the brackets but *not* the brackets themselves.
@@ -806,7 +815,7 @@ that can be used with Vim's regular grammer system too.
 
 3. Use the yanked text to complete the Q and A below.
 
-Vim (for Vi iMproved) was invented by Bram Moolenaar in 1991.
+Vim (for Vi IMproved) was invented by Bram Moolenaar in 1991.
 
 Q: What does Vim stand for?
 A: Vim stands .
@@ -818,7 +827,7 @@ marks — the in and around operators also work with quotation marks, words, and
 paragraphs.
 
 To use, you can replace the bracket character with `w`{normal} or `p`{normal}.
-For paragraphs and words *in* acts on *just the text*, while *around* includes
+For words and paragraphs *in* acts on *just the text*, while *around* includes
 *trailing whitespace*.
 
 #### WORD
@@ -838,7 +847,7 @@ There is Supercalifragilisticexpialidocious a word that doesn't belong here.
 3. Move to the blank line below the last paragraph.
 
 4. Press `p`{normal} to paste the deleted paragraph here. Note: due to a bug
-   in Vim's green checkmark system, you might see a ✗ on line 844 even after
+   in Vim's green checkmark system, you might see a ✗ on line 854 even after
    correctly making this change. Don't worry about it.
 
 Vim's forerunner, Stevie (ST Editor for VI Enthusiasts), was created by Tim
