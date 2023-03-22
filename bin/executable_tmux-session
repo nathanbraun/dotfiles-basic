@@ -1,3 +1,4 @@
+#!/bin/bash
 set -euo pipefail
 
 # find the project root directory by examining each parent starting from the
