@@ -6,9 +6,18 @@ BACKUP_DIR="$HOME/config_backup"
 
 # List of dotfiles and dot-directories to backup or restore
 CONFIG_LIST=(
-  ".zshrc"
-  ".tmux"
   ".config"
+  ".inputrc"
+  ".p10k.zsh"
+  ".tmux"
+  ".tmux.conf"
+  ".tmux.conf.local"
+  ".zlogin"
+  ".zlogout"
+  ".zpreztorc"
+  ".zprofile"
+  ".zshev"
+  ".zshrc"
 )
 
 # Function to backup dotfiles and dot-directories
