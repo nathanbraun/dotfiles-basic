@@ -2,10 +2,10 @@
 
 # Set the user's home directory and backup directory
 HOME_DIR="$HOME"
-BACKUP_DIR="$HOME/config_backup"
+BACKUP_ROOT="$HOME/config_backup"
 
-# List of dotfiles and dot-directories to backup or restore
-CONFIG_LIST=(
+# List of config files and directories to backup or restore
+CONFIG_FILES_LIST=(
   ".config"
   ".inputrc"
   ".p10k.zsh"
@@ -20,32 +20,47 @@ CONFIG_LIST=(
   ".zshrc"
 )
 
-# Function to backup dotfiles and dot-directories
-backup() {
-  # Create the backup directory if it doesn't exist
+# Function to create a timestamped backup directory
+create_backup_dir() {
+  local timestamp=$(date +%Y%m%d_%H%M%S)
+  BACKUP_DIR="$BACKUP_ROOT/$timestamp"
   mkdir -p "$BACKUP_DIR"
+}
 
-  for item in "${CONFIG_LIST[@]}"; do
+# Function to backup config files and directories
+backup() {
+  # Create the timestamped backup directory
+  create_backup_dir
+
+  for item in "${CONFIG_FILES_LIST[@]}"; do
     if [ -e "$HOME_DIR/$item" ]; then
       mv -v "$HOME_DIR/$item" "$BACKUP_DIR"
     fi
   done
 
-  echo "Dotfiles and dot-directories backup completed. Backup is stored in $BACKUP_DIR"
+  echo "Config files and directories backup completed. Backup is stored in $BACKUP_DIR"
 }
 
-# Function to restore dotfiles and dot-directories from the backup directory
+# Function to restore config files and directories from the backup directory
 restore() {
-  if [ -d "$BACKUP_DIR" ]; then
-    for item in "${CONFIG_LIST[@]}"; do
+  if [ -d "$BACKUP_ROOT" ]; then
+    # Get the latest backup directory
+    BACKUP_DIR=$(ls -td -- "$BACKUP_ROOT"/*/ | head -n 1)
+
+    if [ -z "$BACKUP_DIR" ]; then
+      echo "No backup found in $BACKUP_ROOT. Cannot restore."
+      exit 1
+    fi
+
+    for item in "${CONFIG_FILES_LIST[@]}"; do
       if [ -e "$BACKUP_DIR/$item" ]; then
         mv -v "$BACKUP_DIR/$item" "$HOME_DIR"
       fi
     done
 
-    echo "Dotfiles and dot-directories restored from $BACKUP_DIR"
+    echo "Config files and directories restored from $BACKUP_DIR"
   else
-    echo "Backup directory $BACKUP_DIR not found. Cannot restore."
+    echo "Backup root directory $BACKUP_ROOT not found. Cannot restore."
   fi
 }
 
