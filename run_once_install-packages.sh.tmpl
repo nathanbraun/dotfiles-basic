@@ -15,6 +15,11 @@ brew install lsd
 brew install ghq
 brew install fzf
 
+{{if eq .chezmoi.os "darwin" -}}
+brew install reattach-to-user-namespace
+{{ end -}}
+
+
 #--------------------------------------------------
 # Shell Configurations
 #--------------------------------------------------
