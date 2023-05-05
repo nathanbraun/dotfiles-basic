@@ -1,4 +1,8 @@
+{{if eq .chezmoi.os "linux" -}}
 #!/usr/bin/bash
+{{else if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+{{ end -}}
 
 brew install zsh
 brew install bat
