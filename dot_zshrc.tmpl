@@ -1,7 +1,10 @@
 {{ if eq .chezmoi.os "linux" }}
 export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:$HOME/.fzf/bin"
-export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
