@@ -2,16 +2,6 @@
 export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:$HOME/.fzf/bin"
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-if [ -z "$TMUX" ]; then
-  export TMUX_CONF="$HOME/.tmux.conf"
-  username=$(basename $HOME)
-
-  if command -v tmux >/dev/null 2>&1; then
-    exec env TMUX_TMPDIR=/tmp tmux -u2 -f "$TMUX_CONF" new-session -As "$username" -c "$HOME"
-  else
-    echo "tmux not found. Please install it via Homebrew or another package manager."
-  fi
-fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -52,16 +42,6 @@ zplug load
 export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:$HOME/.fzf/bin"
 export PATH="/opt/homebrew/bin:$PATH"
-if [ -z "$TMUX" ]
-then
-  export TMUX_CONF="$HOME/.tmux.conf"
-  username=$(basename $HOME)
-  if command -v tmux >/dev/null 2>&1; then
-    exec env TMUX_TMPDIR=/tmp tmux -u2 -f "$TMUX_CONF" new-session -As "$username" -c "$HOME"
-  else
-    echo "tmux not found. Please install it via Homebrew or another package manager."
-  fi
-fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -116,18 +96,6 @@ done
 export EDITOR=/opt/homebrew/bin/nvim
 export VISUAL=/opt/homebrew/bin/nvim
 
-# tmux aliases
-alias t="tmux"
-alias ta="t a -t"
-alias tls="t ls"
-alias tn="t new -t"
-alias tid='tmux display-message -p "#S"'
-function tk () {
-  tmux kill-session -t $(tmux display-message -p '#S')
-  docker kill $(docker ps -q) > /dev/null 2>&1
-}
-
-alias muxstart='tmuxinator start'
 
 alias zc="cd /Users/nathanbraun/code/github.com/nathanbraun"
 
@@ -139,44 +107,12 @@ export PATH="$PATH:/Applications/Racket v8.5/bin"
 fpath=($HOME/.local/zsh-functions $fpath)
 
 export PATH="/opt/homebrew/bin:$PATH"
-# function tn() (
-#     if [ -n "$1" ]
-#       then
-#          tmux switch -t $1
-#       else
-#          echo "no session name"
-#      fi
-#   )
 export PATH="/opt/homebrew/sbin:$PATH"
 export PATH="/usr/local/texlive/2021/bin/universal-darwin:$PATH"
 export PATH=/usr/local/smlnj/bin:"$PATH"
 
 {{end -}}
 
-tmux_jump() {
-    # starting in ~/code...
-    BASE="$HOME/code/github.com"
-    # ... look for directories exactly two levels deep (`~/code/owner/project`)
-    # and match them with fzf. In this case we break ties by favoring matches
-    # on the project name instead of the owner name (implementaion means
-    # favoring matches closer to the end of the string.) This is simplified a
-    # little bit with the `--select-1 --query="$1"` line: if there's only one
-    # match for the argument passed in as the first argument to this function,
-    # we select immediately instead of asking for an interactive selection.
-    SELECTED=$(find "$BASE" -mindepth 2 -maxdepth 2 -type d | sed "s|$BASE/||g" | fzf --tiebreak=end --select-1 --query="$1")
-
-    # fzf will exit with a non-zero code if you ctrl-c or ctrl-g out of
-    # it. We use this as a signal that we don't want to jump after all.
-    if [[ "$?" != 0 ]]; then echo "cancelling!"; return 1; fi
-
-    # call tmux-session on the *full* path to the matched project!
-    tmux-session "$BASE/$SELECTED"
-}
-
-# and alias this so I can just do `t bytes.zone` instead of having to type
-# tmux_jump every time.
-alias tj=tmux_jump
-alias ts=tmux-session
 export PYTHONBREAKPOINT="IPython.embed"
 
 ################################################################################
