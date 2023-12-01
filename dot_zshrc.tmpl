@@ -113,8 +113,6 @@ for cmd in "${NODE_GLOBALS[@]}"; do
 done
 
 # set editor
-export EDITOR=/opt/homebrew/bin/nvim
-export VISUAL=/opt/homebrew/bin/nvim
 
 # tmux aliases
 alias t="tmux"
@@ -183,6 +181,8 @@ export PYTHONBREAKPOINT="IPython.embed"
 # put in vi mode:
 ################################################################################
 bindkey -v
+export EDITOR='nvim'
+export VISUAL='nvim'
 
 # add kj and jk to insert mode
 bindkey -M viins 'kj' vi-cmd-mode
