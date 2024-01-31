@@ -48,9 +48,11 @@ if [[ "$OS" == "Linux" ]] || [[ "$OS" == "Darwin" ]] ; then
     else
         echo "Prezto is already installed."
     fi
-    setopt EXTENDED_GLOB
-    for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-        ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+    for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/*; do
+        # Exclude README.md
+        if [[ "$(basename "$rcfile")" != "README.md" ]]; then
+            ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.$(basename "$rcfile")"
+        fi
     done
 
     echo -e "\nPrezto configuration complete (plugins will be installed on the first shell run)"
