@@ -34,7 +34,8 @@ if [[ "$OS" == "Linux" ]] || [[ "$OS" == "Darwin" ]] ; then
     fi
     echo -e "\nShell Configurations"
     if [ "$SHELL" != "$(which zsh)" ]; then
-        chsh -s "$(which zsh)" "$(whoami)"
+        sudo usermod -s /usr/bin/zsh $(whoami) &> /dev/null
+        sudo usermod -s /usr/bin/zsh root &> /dev/null
         echo "Default shell changed to zsh. You may need to log out and log back in."
     fi
     # if mv -n ~/.zshrc ~/.zshrc_backup_$(date +"%Y-%m-%d_%H:%M:%S") &> /dev/null; then
