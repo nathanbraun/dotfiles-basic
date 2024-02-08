@@ -59,11 +59,12 @@ if [[ "$OS" == "Linux" ]] || [[ "$OS" == "Darwin" ]] ; then
     echo -e "\nPrezto configuration complete"
 
   # Install zplug
-  if ! command -v zplug > /dev/null; then
+  ZPLUG_HOME="$HOME/.zplug"
+  if [ ! -d "$ZPLUG_HOME" ]; then
       echo "Installing zplug..."
-      export ZPLUG_HOME="$HOME/.zplug"
       git clone https://github.com/zplug/zplug $ZPLUG_HOME
-      source $ZPLUG_HOME/init.zsh
+      # Note that you can't source zplug here since this script runs in bash
+      # You will need to source it from your .zshrc file
   else
       echo "zplug is already installed."
   fi
