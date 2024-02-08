@@ -32,12 +32,22 @@ if [[ "$OS" == "Linux" ]] || [[ "$OS" == "Darwin" ]] ; then
         sudo apt install zsh -y
         echo -e "\nInstalling zsh, bat, git and snap"
     fi
+
     echo -e "\nShell Configurations"
-    if [ "$SHELL" != "$(which zsh)" ]; then
-        sudo usermod -s /usr/bin/zsh $(whoami) &> /dev/null
-        sudo usermod -s /usr/bin/zsh root &> /dev/null
-        echo "Default shell changed to zsh. You may need to log out and log back in."
+    CURRENT_SHELL=$(getent passwd $(whoami) | cut -d: -f7)
+    ROOT_SHELL=$(getent passwd root | cut -d: -f7)
+    ZSH_PATH=$(which zsh)
+
+    if [ "$CURRENT_SHELL" != "$ZSH_PATH" ]; then
+        sudo usermod -s "$ZSH_PATH" $(whoami) &> /dev/null
+        echo "Default shell changed to zsh for $(whoami). You may need to log out and log back in."
     fi
+
+    if [ "$ROOT_SHELL" != "$ZSH_PATH" ]; then
+        sudo usermod -s "$ZSH_PATH" root &> /dev/null
+        echo "Default shell changed to zsh for root. You may need to log out and log back in."
+    fi
+
     # if mv -n ~/.zshrc ~/.zshrc_backup_$(date +"%Y-%m-%d_%H:%M:%S") &> /dev/null; then
     #     echo -e "\n--> Backing up the current .zshrc config to .zshrc_backup-date"
     # fi
