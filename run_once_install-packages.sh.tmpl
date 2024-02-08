@@ -64,23 +64,6 @@ if [[ "$OS" == "Linux" ]] || [[ "$OS" == "Darwin" ]] ; then
       export ZPLUG_HOME="$HOME/.zplug"
       git clone https://github.com/zplug/zplug $ZPLUG_HOME
       source $ZPLUG_HOME/init.zsh
-      # If you have zplug commands in your .zshrc, you can run them here to
-      # install your plugins immediately instead of waiting for a new shell
-      # session. For example:
-      # zplug install
-
-      # Select zplug plugins
-      zplug "agkozak/zsh-z"
-      zplug "junegunn/fzf"
-      zplug "yuhonas/zsh-aliases-lsd"
-      zplug "romkatv/powerlevel10k", as:theme, depth:1
-
-      # Make sure that plugins are installed
-      if ! zplug check --verbose; then
-          printf "Installing missing zplug plugins...\n"
-          zplug install
-      fi
-
   else
       echo "zplug is already installed."
   fi
